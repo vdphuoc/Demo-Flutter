@@ -1,12 +1,12 @@
 # demo_oct_16
 
 A Demo Flutter project.
+* *Application is not finish yet.
+**Updating...
 
 ## Getting Started
 Some screens for App
 
+![LoginPage](https://github.com/vdphuoc/demo1610/assets/147540628/dfac389b-57cf-4629-bc80-eeb79fc26f0d)
 
-![LoginPage (2)](https://github.com/vdphuoc/demo1610/assets/147540628/f2b75145-769f-4cbd-8a28-31f0155979ea)
-
-
-![FoodPage](https://github.com/vdphuoc/demo1610/assets/147540628/55ef1a11-1ae0-4527-b4f0-c8bfee590aa9)
+![FoodPage](https://github.com/vdphuoc/demo1610/assets/147540628/7bc0b665-78f1-4ff0-9207-cf5698eb3975)
