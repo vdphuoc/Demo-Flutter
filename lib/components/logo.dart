@@ -8,10 +8,10 @@ class LogoBrand extends StatelessWidget {
     return Container(
       height: 150,
       width: 150,
-      margin: EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 30),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 149, 220, 17), // Border color
+          color: const Color.fromARGB(255, 149, 220, 17), // Border color
           width: 0.8, // Border width
         ),
         borderRadius: BorderRadius.circular(25.0), // To make it a circle

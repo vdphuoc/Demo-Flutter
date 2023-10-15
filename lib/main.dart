@@ -14,11 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //? route
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/catagory': (context) => CatagoryHome(),
+      },
       //! login page
-      // home: MyHomePage(),
-      home: CatagoryHome(),
+      //home: MyHomePage(),
+      // home: CatagoryHome(),
       //
     );
   }

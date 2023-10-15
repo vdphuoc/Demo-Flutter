@@ -1,4 +1,6 @@
-import 'package:demo_oct_16/widgets/socialNetwork.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:demo_oct_16/components/socialNetwork.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,13 +12,13 @@ class SingInGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          alignment: Alignment.center,
-          height: 50,
-          width: 150,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: const Color(0xFFF56B3F),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFF56B3F),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            minimumSize: Size(150, 50),
           ),
           child: Text(
             'Sign in',
@@ -26,6 +28,11 @@ class SingInGroup extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          onPressed: () {
+            // Navigator.pushNamed(context, '/catagory');
+            Navigator.of(context!).pushNamedAndRemoveUntil(
+                '/catagory', (Route<dynamic> route) => false);
+          },
         ),
 
 //! question login other ways

@@ -1,20 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:demo_oct_16/widgets/brandName.dart';
-import 'package:demo_oct_16/widgets/footer.dart';
-import 'package:demo_oct_16/widgets/logo.dart';
-import 'package:demo_oct_16/widgets/signInGroup.dart';
+import 'package:demo_oct_16/components/brandName.dart';
+import 'package:demo_oct_16/components/footer.dart';
+import 'package:demo_oct_16/components/logo.dart';
+import 'package:demo_oct_16/components/signInGroup.dart';
 import 'package:flutter/material.dart';
-import '../widgets/loginForm.dart';
+import '../components/loginForm.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
