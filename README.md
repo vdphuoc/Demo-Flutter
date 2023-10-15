@@ -1,8 +1,10 @@
 # demo_oct_16
 
 A Demo Flutter project.
-* *Application is not finish yet.
-**Updating...
+**Note**: 
+_Application is not finish yet._ 
+
+**Updating...**
 
 ## Getting Started
 Some screens for App
