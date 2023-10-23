@@ -5,8 +5,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SingInGroup extends StatelessWidget {
-  const SingInGroup({super.key});
+class SignInGroup extends StatelessWidget {
+  const SignInGroup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class SingInGroup extends StatelessWidget {
           onPressed: () {
             // Navigator.pushNamed(context, '/catagory');
             Navigator.of(context!).pushNamedAndRemoveUntil(
-                '/catagory', (Route<dynamic> route) => false);
+                '/category', (Route<dynamic> route) => false);
           },
         ),
 

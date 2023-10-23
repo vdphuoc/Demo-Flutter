@@ -7,18 +7,18 @@ class CatogoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CatagoryHome();
+    return const CategoryHome();
   }
 }
 
-class CatagoryHome extends StatefulWidget {
-  const CatagoryHome({super.key});
+class CategoryHome extends StatefulWidget {
+  const CategoryHome({super.key});
 
   @override
-  State<CatagoryHome> createState() => _CatagoryHomeState();
+  State<CategoryHome> createState() => _CategoryHomeState();
 }
 
-class _CatagoryHomeState extends State<CatagoryHome> {
+class _CategoryHomeState extends State<CategoryHome> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
@@ -27,7 +27,7 @@ class _CatagoryHomeState extends State<CatagoryHome> {
         return FoodItemCard(foodItem: foodItem);
       }).toList(),
     ),
-    Text("Empty for Catagory"),
+    Text("Empty for Category"),
     Text("Empty for Profile"),
   ];
 
@@ -68,7 +68,7 @@ class _CatagoryHomeState extends State<CatagoryHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.category_sharp),
-            label: 'Catagory',
+            label: 'Category',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

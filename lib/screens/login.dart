@@ -27,6 +27,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // logo
             LogoBrand(),
@@ -42,7 +43,7 @@ class MyHomePage extends StatelessWidget {
             ),
             //signin button and Social Button
             Flexible(
-              child: SingInGroup(),
+              child: SignInGroup(),
             ),
             // footter
             Footter(),

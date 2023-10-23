@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-import 'package:demo_oct_16/screens/catagory.dart';
+import 'package:demo_oct_16/screens/category.dart';
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
-        '/catagory': (context) => CatagoryHome(),
+        '/category': (context) => CategoryHome(),
       },
       //! login page
       //home: MyHomePage(),
