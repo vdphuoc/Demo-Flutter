@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:demo_oct_16/screens/cart.dart';
 import 'package:demo_oct_16/screens/category.dart';
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
@@ -21,11 +22,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/category': (context) => CategoryHome(),
+        '/cart': (context) => ShoppingCart(),
       },
       //! login page
-      //home: MyHomePage(),
-      // home: CatagoryHome(),
-      //
+      // home: ShoppingCart(),
     );
   }
 }

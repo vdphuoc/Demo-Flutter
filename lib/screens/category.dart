@@ -52,7 +52,9 @@ class _CategoryHomeState extends State<CategoryHome> {
           ),
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "/cart");
+            },
           )
         ],
       ),
