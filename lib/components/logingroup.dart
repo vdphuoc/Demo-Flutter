@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, avoid_print
 
 import 'package:demo_oct_16/components/socialNetwork.dart';
+import 'package:demo_oct_16/model/authenticate.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,11 +16,38 @@ class LoginGroup extends StatefulWidget {
 }
 
 class _LoginGroupState extends State<LoginGroup> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String message = '';
+
   late bool _passwordVisible;
   @override
   void initState() {
     super.initState();
     _passwordVisible = false;
+  }
+
+  Future<bool> _login() async {
+    final String username = usernameController.text;
+    final String password = passwordController.text;
+    bool flag = false;
+
+    bool isAuthenticated = await authenticateUser(username, password);
+
+    if (isAuthenticated) {
+      setState(() {
+        message = 'Login successful';
+        print('$message and usrname:[ $username ] and password: [$password]');
+      });
+      flag = true;
+    } else {
+      setState(() {
+        message = 'Invalid username or password';
+        print('$message and usrname:[ $username ] and password: [$password]');
+      });
+      flag = false;
+    }
+    return flag;
   }
 
   @override
@@ -57,9 +85,10 @@ class _LoginGroupState extends State<LoginGroup> {
                   width: 16,
                 ),
 
-                //email address textField
+                //username textField
                 Expanded(
                   child: TextField(
+                    controller: usernameController,
                     maxLines: 1,
                     cursorColor: Colors.white70,
                     keyboardType: TextInputType.emailAddress,
@@ -120,6 +149,7 @@ class _LoginGroupState extends State<LoginGroup> {
                 //password textField
                 Expanded(
                   child: TextField(
+                    controller: passwordController,
                     maxLines: 1,
                     cursorColor: Colors.white70,
                     keyboardType: TextInputType.visiblePassword,
@@ -193,10 +223,17 @@ class _LoginGroupState extends State<LoginGroup> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 // Navigator.pushNamed(context, '/catagory');
-                Navigator.of(context!).pushNamedAndRemoveUntil(
-                    '/category', (Route<dynamic> route) => false);
+
+                var flag = _login();
+
+                if (await flag) {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/category', (Route<dynamic> route) => false);
+                } else {
+                  print('invalid user and pwd...');
+                }
               },
             ),
 
