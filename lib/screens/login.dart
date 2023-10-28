@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:demo_oct_16/components/brandName.dart';
+import 'package:demo_oct_16/components/brand.dart';
 import 'package:demo_oct_16/components/footer.dart';
-import 'package:demo_oct_16/components/logo.dart';
-import 'package:demo_oct_16/components/signInGroup.dart';
+import 'package:demo_oct_16/components/logingroup.dart';
 import 'package:flutter/material.dart';
-import '../components/loginForm.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -29,23 +27,16 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // logo
-            LogoBrand(),
-            // brand name
-            BrandName(),
+            // brand
+            Brand(),
+            //body
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+              child: LoginGroup(),
+            ),
             SizedBox(
-              height: 30,
+              width: 50,
             ),
-            //login Form
-            LoginForm(),
-            SizedBox(
-              height: 20,
-            ),
-            //signin button and Social Button
-            Flexible(
-              child: SignInGroup(),
-            ),
-            // footter
             Footter(),
           ],
         ),
