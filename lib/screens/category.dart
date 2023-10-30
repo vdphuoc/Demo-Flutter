@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, library_private_types_in_public_api
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, library_private_types_in_public_api, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 
@@ -22,11 +22,7 @@ class _CategoryHomeState extends State<CategoryHome> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    ListView(
-      children: foodItems.map((foodItem) {
-        return FoodItemCard(foodItem: foodItem);
-      }).toList(),
-    ),
+    FoodItemCard(),
     Text("Empty for Category"),
     Text("Empty for Profile"),
   ];
@@ -35,7 +31,7 @@ class _CategoryHomeState extends State<CategoryHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: true,
         title: Text('Catagory Page'),
         leading: Builder(
           builder: (BuildContext context) {
@@ -53,12 +49,12 @@ class _CategoryHomeState extends State<CategoryHome> {
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "/cart");
+              Navigator.pushNamed(context, "/cart");
             },
           )
         ],
       ),
-      body: Center(
+      body: Container(
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -92,83 +88,124 @@ class _CategoryHomeState extends State<CategoryHome> {
 }
 
 class FoodItem {
-  final String name;
+  final String productName;
   final String imageUrl;
+  final int productprice;
+  final String unitTag;
 
-  FoodItem({required this.name, required this.imageUrl});
+  FoodItem(
+      {required this.productName,
+      required this.productprice,
+      required this.unitTag,
+      required this.imageUrl});
 }
 
 //"assets/images/logo.png"
 final List<FoodItem> foodItems = [
-  FoodItem(name: 'Bánh canh', imageUrl: "assets/images/banhcanh.jpg"),
-  FoodItem(name: 'Bánh hỏi', imageUrl: "assets/images/banhhoi.jpg"),
-  FoodItem(name: 'Bánh xèo', imageUrl: "assets/images/banhxeo.jpg"),
-  FoodItem(name: 'Bún bò', imageUrl: "assets/images/bunbo.jpg"),
-  FoodItem(name: 'Bánh canh', imageUrl: "assets/images/banhcanh.jpg"),
-  FoodItem(name: 'Bánh hỏi', imageUrl: "assets/images/banhhoi.jpg"),
-  FoodItem(name: 'Bánh xèo', imageUrl: "assets/images/banhxeo.jpg"),
-  FoodItem(name: 'Bún bò', imageUrl: "assets/images/bunbo.jpg"),
-  FoodItem(name: 'Bánh canh', imageUrl: "assets/images/banhcanh.jpg"),
-  FoodItem(name: 'Bánh hỏi', imageUrl: "assets/images/banhhoi.jpg"),
-  FoodItem(name: 'Bánh xèo', imageUrl: "assets/images/banhxeo.jpg"),
-  FoodItem(name: 'Bún bò', imageUrl: "assets/images/bunbo.jpg"),
-  FoodItem(name: 'Bánh canh', imageUrl: "assets/images/banhcanh.jpg"),
-  FoodItem(name: 'Bánh hỏi', imageUrl: "assets/images/banhhoi.jpg"),
-  FoodItem(name: 'Bánh xèo', imageUrl: "assets/images/banhxeo.jpg"),
-  FoodItem(name: 'Bún bò', imageUrl: "assets/images/bunbo.jpg"),
+  FoodItem(
+    productName: 'Bánh canh',
+    imageUrl: "assets/images/banhcanh.jpg",
+    productprice: 5,
+    unitTag: 'Tô',
+  ),
+  FoodItem(
+    productName: 'Bánh hỏi',
+    imageUrl: "assets/images/banhhoi.jpg",
+    productprice: 8,
+    unitTag: 'Phần',
+  ),
+  FoodItem(
+    productName: 'Bánh xèo',
+    imageUrl: "assets/images/banhxeo.jpg",
+    productprice: 3,
+    unitTag: 'Bánh',
+  ),
+  FoodItem(
+    productName: 'Bún bò',
+    imageUrl: "assets/images/bunbo.jpg",
+    productprice: 5,
+    unitTag: 'Tô',
+  ),
 ];
 
 class FoodItemCard extends StatelessWidget {
-  final FoodItem foodItem;
-
-  const FoodItemCard({super.key, required this.foodItem});
+  const FoodItemCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8.0),
-      child: ListTile(
-        leading: Image.asset(foodItem.imageUrl, width: 80, height: 80),
-        title: Text(foodItem.name),
-        trailing: AddButton(),
-      ),
-    );
-  }
-}
-
-class AddButton extends StatefulWidget {
-  const AddButton({super.key});
-
-  @override
-  _AddButtonState createState() => _AddButtonState();
-}
-
-class _AddButtonState extends State<AddButton> {
-  int quantity = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Column(
       children: [
-        IconButton(
-          icon: Icon(Icons.remove),
-          onPressed: () {
-            if (quantity > 0) {
-              setState(() {
-                quantity--;
-              });
-            }
-          },
-        ),
-        Text(quantity.toString()),
-        IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () {
-            setState(() {
-              quantity++;
-            });
-          },
+        Expanded(
+          child: ListView.builder(
+            itemCount: foodItems.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 0.8, color: Colors.amber),
+                            borderRadius: BorderRadius.circular(5)),
+                        width: 100,
+                        height: 68,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image(
+                            image: AssetImage(foodItems[index].imageUrl),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              foodItems[index].productName.toString(),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  r'(' +
+                                      foodItems[index].unitTag.toString() +
+                                      r')',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  foodItems[index].productprice.toString() +
+                                      r' VND',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.green)),
+                        onPressed: () {},
+                        child: Text('Mua'),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ],
     );

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'userModel.dart';
+import 'user_model.dart';
 
 Future<List<User>> fetchUsers() async {
-  final String data = await rootBundle.loadString('json/users.json');
+  final String data = await rootBundle.loadString('assets/json/users.json');
   final List<dynamic> jsonList = json.decode(data);
   return jsonList
       .map((json) => User(json['username'], json['password']))

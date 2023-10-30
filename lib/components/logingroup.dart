@@ -188,21 +188,20 @@ class _LoginGroupState extends State<LoginGroup> {
             ),
           ),
         ),
-        //! size box
-        const SizedBox(
-          height: 16,
-        ),
         //!remember pwd
-        Row(
-          children: [
-            SizedBox(
-              width: 8,
-            ),
-            RememberCheckbox(),
-            SizedBox(
-              width: 8,
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 8,
+              ),
+              RememberCheckbox(),
+              SizedBox(
+                width: 8,
+              ),
+            ],
+          ),
         ),
         //! sign in button
         Column(
@@ -229,8 +228,7 @@ class _LoginGroupState extends State<LoginGroup> {
                 var flag = _login();
 
                 if (await flag) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/category', (Route<dynamic> route) => false);
+                  Navigator.of(context).pushNamed('/category');
                 } else {
                   print('invalid user and pwd...');
                 }
