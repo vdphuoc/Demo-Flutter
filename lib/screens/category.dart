@@ -3,6 +3,7 @@
 import 'package:demo_oct_16/model/cart_model.dart';
 import 'package:demo_oct_16/model/db_helper.dart';
 import 'package:demo_oct_16/model/list_product_provider.dart';
+import 'package:demo_oct_16/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
@@ -30,7 +31,7 @@ class _CategoryHomeState extends State<CategoryHome> {
   final _pages = <Widget>[
     FoodItemCard(),
     Text("Empty for Transaction"),
-    Text("Empty for Profile"),
+    MyProfile(),
   ];
 
   @override
@@ -39,6 +40,8 @@ class _CategoryHomeState extends State<CategoryHome> {
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: true,
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
         title: Text('Catagory Page'),
         leading: Builder(
           builder: (BuildContext context) {
@@ -51,9 +54,12 @@ class _CategoryHomeState extends State<CategoryHome> {
         actions: <Widget>[
           Row(
             children: [
-              IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {},
+              Visibility(
+                visible: _selectedIndex == 0 ? true : false,
+                child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {},
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 8),
@@ -91,18 +97,36 @@ class _CategoryHomeState extends State<CategoryHome> {
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(219, 32, 69, 90),
         mouseCursor: SystemMouseCursors.grab,
+        fixedColor: Colors.white,
+        unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.fastfood),
+            icon: Icon(
+              Icons.fastfood,
+              color: _selectedIndex == 0
+                  ? Color.fromARGB(255, 94, 186, 24)
+                  : Color.fromARGB(255, 162, 161, 161),
+            ),
             label: 'Food',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.compare_arrows),
+            icon: Icon(
+              Icons.compare_arrows,
+              color: _selectedIndex == 1
+                  ? Color.fromARGB(255, 94, 186, 24)
+                  : Color.fromARGB(255, 162, 161, 161),
+            ),
             label: 'Transaction',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              Icons.person,
+              color: _selectedIndex == 2
+                  ? Color.fromARGB(255, 94, 186, 24)
+                  : Color.fromARGB(255, 162, 161, 161),
+            ),
             label: 'Profile',
           )
         ],
@@ -137,61 +161,61 @@ class FoodItem {
 final List<FoodItem> listFoodItems = [
   FoodItem(
     productName: 'Bánh canh',
-    imageUrl: "assets/images/banhcanh.jpg",
+    imageUrl: "assets/images/product/banhcanh.jpg",
     productPrice: 25,
     unitTag: 'Tô',
   ),
   FoodItem(
     productName: 'Bánh hỏi',
-    imageUrl: "assets/images/banhhoi.jpg",
+    imageUrl: "assets/images/product/banhhoi.jpg",
     productPrice: 20,
     unitTag: 'Phần',
   ),
   FoodItem(
     productName: 'Bánh xèo',
-    imageUrl: "assets/images/banhxeo.jpg",
+    imageUrl: "assets/images/product/banhxeo.jpg",
     productPrice: 15,
     unitTag: 'Bánh',
   ),
   FoodItem(
     productName: 'Bún bò',
-    imageUrl: "assets/images/bunbo.jpg",
+    imageUrl: "assets/images/product/bunbo.jpg",
     productPrice: 35,
     unitTag: 'Tô',
   ),
   FoodItem(
     productName: 'Bánh mì',
-    imageUrl: "assets/images/banhmi.jpg",
+    imageUrl: "assets/images/product/banhmi.jpg",
     productPrice: 15,
     unitTag: 'Cái',
   ),
   FoodItem(
     productName: 'Chuối nướng',
-    imageUrl: "assets/images/chuoinuong.jpg",
+    imageUrl: "assets/images/product/chuoinuong.jpg",
     productPrice: 5,
     unitTag: 'Cái',
   ),
   FoodItem(
     productName: 'Gỏi cuốn',
-    imageUrl: "assets/images/goicuon.jpg",
+    imageUrl: "assets/images/product/goicuon.jpg",
     productPrice: 10,
     unitTag: 'Cái',
   ),
   FoodItem(
     productName: 'Khoai tây chiên',
-    imageUrl: "assets/images/khoaitaychien.jpg",
+    imageUrl: "assets/images/product/khoaitaychien.jpg",
     productPrice: 15,
     unitTag: 'Phần',
   ),
   FoodItem(
     productName: 'Mì Ý',
-    imageUrl: "assets/images/miy.jpg",
+    imageUrl: "assets/images/product/miy.jpg",
     productPrice: 25,
     unitTag: 'Tô',
   ),
   FoodItem(
     productName: 'Xiên nướng',
-    imageUrl: "assets/images/xiennuong.jpg",
+    imageUrl: "assets/images/product/xiennuong.jpg",
     productPrice: 30,
     unitTag: 'Phần',
   ),
@@ -296,7 +320,7 @@ class _FoodItemCardState extends State<FoodItemCard> {
                             print(error.toString());
                           });
                         },
-                        child: Text('Mua'),
+                        child: Text('Buy'),
                       )
                     ],
                   ),

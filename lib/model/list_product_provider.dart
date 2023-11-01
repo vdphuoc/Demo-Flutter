@@ -12,6 +12,9 @@ class ListProductProvider with ChangeNotifier {
   double _totalPrice = 0.0;
   double get totalPrice => _totalPrice;
 
+  double _totalDiscount = 0.0;
+  double get totalDiscount => _totalDiscount;
+
   late Future<List<Cart>> _cart;
   Future<List<Cart>> get cart => _cart;
 
@@ -24,6 +27,7 @@ class ListProductProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('cart_item', _counter);
     prefs.setDouble('total_price', _totalPrice);
+    prefs.setDouble('total_discount', _totalDiscount);
     notifyListeners();
   }
 
@@ -31,6 +35,7 @@ class ListProductProvider with ChangeNotifier {
     SharedPreferences pref = await SharedPreferences.getInstance();
     _counter = pref.getInt('cart_item') ?? 0;
     _totalPrice = pref.getDouble('total_price') ?? 0.0;
+    _totalDiscount = pref.getDouble('total_discount') ?? 0.0;
     notifyListeners();
   }
 
@@ -66,5 +71,16 @@ class ListProductProvider with ChangeNotifier {
   double getTotalPrice() {
     _getPrefItem();
     return _totalPrice;
+  }
+
+  double getTotalDiscount() {
+    _getPrefItem();
+    return _totalDiscount;
+  }
+
+  void resetTotalPrice() {
+    _totalPrice = 0.00;
+    _setPrefItem();
+    notifyListeners();
   }
 }
