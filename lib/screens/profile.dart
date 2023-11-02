@@ -1,10 +1,18 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
 
-class MyProfile extends StatelessWidget {
+enum GenderOption { male, female }
+
+class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
 
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
+  GenderOption? _gender = GenderOption.male;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -12,8 +20,8 @@ class MyProfile extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 170, 204, 229),
-              Color.fromARGB(255, 156, 203, 159)
+              Color.fromARGB(255, 199, 221, 236),
+              Color.fromARGB(255, 165, 211, 168)
             ], // Replace gradient colors
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -89,7 +97,7 @@ class MyProfile extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'User',
+                      hintText: 'Username',
                     ),
                   ),
                 ),
@@ -127,19 +135,29 @@ class MyProfile extends StatelessWidget {
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: RadioListTile(
+                  child: RadioListTile<GenderOption>(
                     title: Text("Male"),
-                    value: "male",
-                    groupValue: null,
-                    onChanged: (_) {},
+                    value: GenderOption.male,
+                    groupValue: _gender,
+                    onChanged: (GenderOption? value) {
+                      setState(() {
+                        _gender = value;
+                        print("male clicked $_gender");
+                      });
+                    },
                   ),
                 ),
                 Expanded(
-                  child: RadioListTile(
+                  child: RadioListTile<GenderOption>(
                     title: Text("Female"),
-                    value: "female",
-                    groupValue: null,
-                    onChanged: (_) {},
+                    value: GenderOption.female,
+                    groupValue: _gender,
+                    onChanged: (GenderOption? value) {
+                      setState(() {
+                        _gender = value;
+                        print("female clicked $_gender");
+                      });
+                    },
                   ),
                 ),
               ],
@@ -150,7 +168,7 @@ class MyProfile extends StatelessWidget {
               children: [
                 Container(
                   width: 80,
-                  child: Text('Date ',
+                  child: Text('Birth ',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),

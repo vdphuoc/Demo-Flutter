@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "name": "Nguyen Van A",
+        "birth": "01/02/2002",
+        "gender": 1
+    },
+    {
+        "id": 2,
+        "username": "user",
+        "name": "Nguyen Van B",
+        "birth": "01/02/2003",
+        "gender": 1
+    },
+    {
+        "id": 3,
+        "username": "",
+        "name": "NaN",
+        "birth": "00/00/0000",
+        "gender": 0
+    }
+]

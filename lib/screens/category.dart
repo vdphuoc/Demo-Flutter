@@ -26,6 +26,7 @@ class CategoryHome extends StatefulWidget {
 }
 
 class _CategoryHomeState extends State<CategoryHome> {
+  List<String> _labelList = ["Food Order", "Transaction", "Profile"];
   int _selectedIndex = 0;
 
   final _pages = <Widget>[
@@ -36,13 +37,12 @@ class _CategoryHomeState extends State<CategoryHome> {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<ListProductProvider>(context);
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: true,
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
-        title: Text('Catagory Page'),
+        title: Text(_labelList.elementAt(_selectedIndex)),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
