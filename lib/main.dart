@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-import 'package:demo_oct_16/model/list_product_provider.dart';
+import 'package:demo_oct_16/provider/information_provider.dart';
+import 'package:demo_oct_16/provider/list_product_provider.dart';
+import 'package:demo_oct_16/provider/profilepage_provider.dart';
+
 import 'package:demo_oct_16/screens/cart.dart';
 import 'package:demo_oct_16/screens/category.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ListProductProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileProvider()),
+        ChangeNotifierProvider(create: (context) => InforProvider()),
         //more provider if need
       ],
       child: Builder(

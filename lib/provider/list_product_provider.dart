@@ -1,5 +1,5 @@
-import 'cart_model.dart';
-import 'db_helper.dart';
+import '../model/cart_model.dart';
+import '../database/db_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

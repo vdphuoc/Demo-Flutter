@@ -2,8 +2,8 @@
 
 import 'package:badges/badges.dart';
 import 'package:demo_oct_16/model/cart_model.dart';
-import 'package:demo_oct_16/model/db_helper.dart';
-import 'package:demo_oct_16/model/list_product_provider.dart';
+import 'package:demo_oct_16/database/db_helper.dart';
+import 'package:demo_oct_16/provider/list_product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/scheduler.dart';

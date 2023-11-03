@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, library_private_types_in_public_api, sized_box_for_whitespace, avoid_print, prefer_final_fields
 
 import 'package:demo_oct_16/model/cart_model.dart';
-import 'package:demo_oct_16/model/db_helper.dart';
-import 'package:demo_oct_16/model/list_product_provider.dart';
+import 'package:demo_oct_16/database/db_helper.dart';
+import 'package:demo_oct_16/provider/list_product_provider.dart';
 import 'package:demo_oct_16/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;

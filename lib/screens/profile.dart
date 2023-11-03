@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
+import 'package:demo_oct_16/provider/information_provider.dart';
+import 'package:demo_oct_16/provider/profilepage_provider.dart';
+import 'package:demo_oct_16/model/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 enum GenderOption { male, female }
 
@@ -13,8 +17,11 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
   GenderOption? _gender = GenderOption.male;
+
   @override
   Widget build(BuildContext context) {
+    final pageModel = Provider.of<ProfileProvider>(context);
+
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -78,8 +85,10 @@ class _MyProfileState extends State<MyProfile> {
                 foregroundColor: Colors.amber,
                 backgroundColor: Colors.black,
               ),
-              onPressed: () {},
-              child: Text('Edit Profile'),
+              onPressed: () {
+                pageModel.toggleEditing();
+              },
+              child: Text(pageModel.btnValue),
             ),
             SizedBox(height: 30),
             Row(
@@ -94,11 +103,20 @@ class _MyProfileState extends State<MyProfile> {
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Username',
-                    ),
+                  child: Consumer<InforProvider>(
+                    builder: (context, value, child) {
+                      value.loadDataFromJson(1);
+
+                      return TextFormField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Username',
+                        ),
+                        initialValue: value.username,
+                        onChanged: (value) {},
+                      );
+                    },
                   ),
                 ),
               ],
@@ -114,14 +132,18 @@ class _MyProfileState extends State<MyProfile> {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(width: 5),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Nguyen Van A',
-                    ),
-                  ),
-                ),
+                Expanded(child: Consumer<InforProvider>(
+                  builder: (context, value, child) {
+                    return TextFormField(
+                      enabled: pageModel.isEditing,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Name',
+                      ),
+                      initialValue: value.name,
+                    );
+                  },
+                )),
               ],
             ),
             Row(
@@ -174,10 +196,11 @@ class _MyProfileState extends State<MyProfile> {
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: TextField(
+                  child: TextFormField(
+                    enabled: pageModel.isEditing,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: '01/01/0001',
+                      hintText: '**/**/****',
                     ),
                   ),
                 ),

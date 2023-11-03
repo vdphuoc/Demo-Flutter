@@ -3,7 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'dart:io' as io;
 import 'dart:async';
-import 'cart_model.dart';
+import '../model/cart_model.dart';
 
 class DBHelper {
   static Database? _db;
