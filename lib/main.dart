@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:demo_oct_16/provider/authenticate_provider.dart';
 import 'package:demo_oct_16/provider/information_provider.dart';
 import 'package:demo_oct_16/provider/list_product_provider.dart';
 import 'package:demo_oct_16/provider/profilepage_provider.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => AuthenticateProvider()),
         ChangeNotifierProvider(create: (context) => ListProductProvider()),
         ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => InforProvider()),

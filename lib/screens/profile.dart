@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
+import 'dart:ui';
+
 import 'package:demo_oct_16/provider/information_provider.dart';
 import 'package:demo_oct_16/provider/profilepage_provider.dart';
-import 'package:demo_oct_16/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -105,7 +106,7 @@ class _MyProfileState extends State<MyProfile> {
                 Expanded(
                   child: Consumer<InforProvider>(
                     builder: (context, value, child) {
-                      value.loadDataFromJson(1);
+                      value.loadDataFromJson();
 
                       return TextFormField(
                         enabled: false,
@@ -196,12 +197,17 @@ class _MyProfileState extends State<MyProfile> {
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: TextFormField(
-                    enabled: pageModel.isEditing,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: '**/**/****',
-                    ),
+                  child: Consumer<InforProvider>(
+                    builder: (context, value, child) {
+                      return TextFormField(
+                        enabled: pageModel.isEditing,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: '**/**/****',
+                        ),
+                        initialValue: value.birth,
+                      );
+                    },
                   ),
                 ),
               ],

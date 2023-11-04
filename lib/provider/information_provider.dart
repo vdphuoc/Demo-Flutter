@@ -3,6 +3,8 @@
 import 'dart:convert';
 
 import 'package:demo_oct_16/model/user_model.dart';
+import 'package:demo_oct_16/provider/authenticate_provider.dart';
+import 'package:demo_oct_16/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,8 +22,22 @@ class InforProvider with ChangeNotifier {
   String get birth => information.birth;
   int get gender => information.gender;
 
+  GenderOption? _genderText = GenderOption.male;
+  GenderOption? get genderOption {
+    return _genderText =
+        (gender == 0) ? GenderOption.female : GenderOption.male;
+  }
+
   bool isDataLoaded = false;
-  Future<void> loadDataFromJson(int idToFind) async {
+  late String currentLoginUser;
+
+  String loadCurrentuser() {
+    currentLoginUser = AuthenticateProvider.currentUser();
+    return currentLoginUser;
+  }
+
+  Future<void> loadDataFromJson() async {
+    loadCurrentuser();
     if (!isDataLoaded) {
       try {
         final jsonString =
@@ -29,7 +45,7 @@ class InforProvider with ChangeNotifier {
         final jsonMap = json.decode(jsonString);
 
         for (var entry in jsonMap) {
-          if (entry['id'] == idToFind) {
+          if (entry['username'] == currentLoginUser) {
             print(entry);
             final id = entry['id'] as int;
             final username = entry['username'] as String;
@@ -54,7 +70,8 @@ class InforProvider with ChangeNotifier {
     }
   }
 
-  void reloadData() {
+  void setGenderOption(GenderOption? value) {
+    _genderText = value;
     notifyListeners();
   }
 }

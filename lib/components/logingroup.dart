@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, avoid_print
 
 import 'package:demo_oct_16/components/socialNetwork.dart';
-import 'package:demo_oct_16/model/authenticate.dart';
+import 'package:demo_oct_16/provider/authenticate_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginGroup extends StatefulWidget {
@@ -31,19 +32,20 @@ class _LoginGroupState extends State<LoginGroup> {
     final String username = usernameController.text;
     final String password = passwordController.text;
     bool flag = false;
-
-    bool isAuthenticated = await authenticateUser(username, password);
-
+    final userProvider =
+        Provider.of<AuthenticateProvider>(context, listen: false);
+    await userProvider.fetchUsers();
+    bool isAuthenticated = userProvider.authenticateUser(username, password);
     if (isAuthenticated) {
       setState(() {
         message = 'Login successful';
-        print('$message and usrname:[ $username ] and password: [$password]');
+        print('$message and usrname:[$username] and password: [$password]');
       });
       flag = true;
     } else {
       setState(() {
         message = 'Invalid username or password';
-        print('$message and usrname:[ $username ] and password: [$password]');
+        print('$message and usrname:[$username] and password: [$password]');
       });
       flag = false;
     }

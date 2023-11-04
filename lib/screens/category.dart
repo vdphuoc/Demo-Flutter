@@ -2,6 +2,7 @@
 
 import 'package:demo_oct_16/model/cart_model.dart';
 import 'package:demo_oct_16/database/db_helper.dart';
+import 'package:demo_oct_16/provider/information_provider.dart';
 import 'package:demo_oct_16/provider/list_product_provider.dart';
 import 'package:demo_oct_16/screens/profile.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,13 @@ class _CategoryHomeState extends State<CategoryHome> {
     Text("Empty for Transaction"),
     MyProfile(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    final inforProvider = Provider.of<InforProvider>(context, listen: false);
+    inforProvider.loadDataFromJson();
+  }
 
   @override
   Widget build(BuildContext context) {
