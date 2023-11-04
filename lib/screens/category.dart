@@ -2,9 +2,11 @@
 
 import 'package:demo_oct_16/model/cart_model.dart';
 import 'package:demo_oct_16/database/db_helper.dart';
+import 'package:demo_oct_16/model/category_model.dart';
 import 'package:demo_oct_16/provider/information_provider.dart';
 import 'package:demo_oct_16/provider/list_product_provider.dart';
 import 'package:demo_oct_16/screens/profile.dart';
+import 'package:demo_oct_16/screens/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
@@ -32,7 +34,7 @@ class _CategoryHomeState extends State<CategoryHome> {
 
   final _pages = <Widget>[
     FoodItemCard(),
-    Text("Empty for Transaction"),
+    TransactionScreen(),
     MyProfile(),
   ];
 
@@ -150,19 +152,6 @@ class _CategoryHomeState extends State<CategoryHome> {
       //print('$_selectedIndex' + ' ' + '$index');
     });
   }
-}
-
-class FoodItem {
-  final String productName;
-  final String imageUrl;
-  final int productPrice;
-  final String unitTag;
-
-  FoodItem(
-      {required this.productName,
-      required this.productPrice,
-      required this.unitTag,
-      required this.imageUrl});
 }
 
 //"assets/images/logo.png"

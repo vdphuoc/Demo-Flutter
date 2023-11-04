@@ -25,6 +25,9 @@ class _MyProfileState extends State<MyProfile> {
 
     return SingleChildScrollView(
       child: Container(
+        constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
+            minWidth: double.infinity),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -211,9 +214,6 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                 ),
               ],
-            ),
-            Container(
-              height: 300,
             ),
           ],
         ),
