@@ -214,9 +214,9 @@ class _ListItemInCartState extends State<ListItemInCart> {
                                         ),
                                         SizedBox(width: 5),
                                         Text(
-                                          snapshot.data![index].productPrice
-                                                  .toString() +
-                                              r' VND',
+                                          r'$ ' +
+                                              snapshot.data![index].productPrice
+                                                  .toString(),
                                           style: TextStyle(fontSize: 16),
                                         ),
                                       ],

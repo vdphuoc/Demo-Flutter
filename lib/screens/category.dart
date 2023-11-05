@@ -281,8 +281,10 @@ class _FoodItemCardState extends State<FoodItemCard> {
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                  listFoodItems[index].productPrice.toString() +
-                                      r' VND',
+                                  r'$ ' +
+                                      listFoodItems[index]
+                                          .productPrice
+                                          .toString(),
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
