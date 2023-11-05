@@ -53,6 +53,7 @@ class ListProductProvider with ChangeNotifier {
 
   int getCounter() {
     _getPrefItem();
+    _counter = _counter < 0 ? 0 : _counter;
     return _counter;
   }
 

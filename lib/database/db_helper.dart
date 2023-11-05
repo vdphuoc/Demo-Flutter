@@ -20,7 +20,7 @@ class DBHelper {
 
     String path = join(documentDirectory.path, 'cart.db');
 
-    var db = await openDatabase(path, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(path, version: 10, onCreate: _onCreate);
     return db;
   }
 
